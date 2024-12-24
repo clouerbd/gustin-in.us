@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gustin Insurance</title>
+    <style>
+        /* Stilar för hela webbplatsen */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .plan {
+            margin: 20px 0;
+            background: #f4f4f4;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        h2 span {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+    <script>
+        // Betalningslogik för alla knappar
+        function handlePayment(amountUSD) {
+            const ethConversionRate = 0.0006; // ETH till USD-kurs
+            const amountETH = (amountUSD * ethConversionRate).toFixed(8);
+            const paymentAddress = "0xEcDB226ee57DCd0B8e5ea38c5D2D64c47d1aE428"; // Ethereum-adress
+
+            // Generera Ethereum-betalningslänk
+            const ethereumURI = `ethereum:${paymentAddress}?value=${amountETH}`;
+            alert(`Redirecting to wallet to pay ${amountETH} ETH.`);
+            
+            // Simulera betalningsbekräftelse och omdirigering
+            setTimeout(() => {
+                window.location.href = "kod.html"; // Redirect till kodsidan
+            }, 3000);
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Gustin Insurance</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Hem</a></li>
+                <li><a href="about.html">Om oss</a></li>
+                <li><a href="services.html">Tjänster</a></li>
+                <li><a href="contact.html">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="plans">
+            <h2>Välj din försäkringsplan</h2>
+            <div class="plan">
+                <h3>Health Insurance</h3>
+                <button class="pay-button" data-amount="200">1 Person - $200/month</button>
+                <button class="pay-button" data-amount="300">2 Persons - $300/month</button>
+                <button class="pay-button" data-amount="600">4 and More - $600/month</button>
+            </div>
+            <div class="plan">
+                <h3>Car Insurance</h3>
+                <button class="pay-button" data-amount="100">1 Car - $100/month</button>
+                <button class="pay-button" data-amount="150">2 Cars - $150/month</button>
+                <button class="pay-button" data-amount="200">3 and More - $200/month</button>
+            </div>
+            <div class="plan">
+                <h3>Property Insurance</h3>
+                <button class="pay-button" data-amount="1000">Under 100k - $1000/year</button>
+                <button class="pay-button" data-amount="3000">Under 300k - $3000/year</button>
+                <button class="pay-button" data-amount="5000">Over 300k - $5000/year</button>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Gustin Insurance. Alla rättigheter förbehållna.</p>
+    </footer>
+
+    <script>
+	document.querySelectorAll('.pay-button').forEach(button => {
+    		button.addEventListener('click', () => {
+	        const amountUSD = button.getAttribute('data-amount');
+        	const ethConversionRate = 0.0006; // ETH to USD conversion rate
+         	const amountETH = (amountUSD * ethConversionRate).toFixed(8);
+	        const paymentAddress = "0xEcDB226ee57DCd0B8e5ea38c5D2D64c47d1aE428"; // Ethereum address
+
+	        // Generate Ethereum payment link
+	        const ethereumURI = `ethereum:${paymentAddress}?value=${amountETH}`;
+	        alert(`Redirecting to wallet to pay ${amountETH} ETH.`);
+        
+	        // Simulate payment confirmation and redirect
+	        setTimeout(() => {
+	            window.location.href = "kod.html"; // Redirect to code page after "payment"
+	        }, 3000);
+	    });
+	});
+    </script>
+</body>
+</html>
+
+
